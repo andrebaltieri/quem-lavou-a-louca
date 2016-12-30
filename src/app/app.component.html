@@ -1,0 +1,68 @@
+<section class="hero is-primary is-fullheight is-fullwidth animated bounceInUp">
+  <div class="hero-head">
+    <div class="container">
+      <div class="tabs is-centered animated shake">
+        <ul>
+          <li class="has-text-centered" *ngIf(user)>
+            <br>
+            <img src="{{ user.photo }}" alt="{{user.name}}" width="80" class="profile-picture"><br>
+            <strong>{{user.name}}</strong> <br> {{ user.email }}
+          </li>
+          <li class="has-text-centered" *ngIf(!user)>
+            <br>
+            <a class="button is-primary" (click)="login()">ENTRAR</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <img src="assets/favicon.png" alt="Quem lavou a louça?" class=" animated flipInY" width="256">
+
+      <h2 class="subtitle animated fadeIn" *ngIf="!user">
+        Quem lavou as louças?
+      </h2>
+
+      <h2 class="subtitle animated fadeIn" *ngIf="user && (lastWasher == user.email)">
+        Você foi o último a lavar as louças!
+      </h2>
+      <h1 class="title animated bounceIn" *ngIf="user && (lastWasher == user.email)">
+        PARABÉNS
+      </h1>
+
+      <h2 class="subtitle animated fadeIn" *ngIf="user && (lastWasher != user.email)">
+        O último a lavar as louças foi
+      </h2>
+      <h1 class="title animated bounceIn" *ngIf="user && (lastWasher != user.email)">
+        Camila Nachbar
+      </h1>
+
+      <h1 class="title animated pulse infinite" *ngIf="user && (lastWasher != user.email)">
+        <a class="button is-primary is-outlined is-inverted is-large" (click)="openModal()">LAVAR AS LOUÇAS</a>
+      </h1>
+
+      <br>
+    </div>
+  </div>
+  <div class="hero-footer">
+    <div class="container">
+      <div class="tabs is-centered">
+        <ul>
+          <li class="has-text-centered" *ngIf(user)>
+            <a class="button is-primary is-outlined is-inverted" (click)="logout()">SAIR</a>
+            <br>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" id="wash-modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    CONTEùDO DO MODAL
+  </div>
+  <button class="modal-close" (click)="closeModal()"></button>
+</div>
